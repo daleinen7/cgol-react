@@ -64,6 +64,13 @@ function App() {
     setBoard(updatedBoard);
   };
 
+  const randomize = () => {
+    setBoard(
+      new Array(options.x * options.y).fill().map(() => Math.random() < 0.5)
+    );
+  };
+
+  // Render
   useEffect(() => {
     const render = () => {
       const x = parseInt(options.x);
@@ -151,6 +158,7 @@ function App() {
     }
   }, [options, board, setBoard, gameRunning]);
 
+  // Intialize on start or after options change
   useEffect(() => {
     init();
   }, [options, init]);
@@ -172,6 +180,9 @@ function App() {
         gameRunning={gameRunning}
       />
       <button className="reset" onClick={init}>
+        Reset
+      </button>
+      <button className="randomize" onClick={randomize}>
         Reset
       </button>
     </StyledContainer>
