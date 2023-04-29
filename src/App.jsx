@@ -184,7 +184,7 @@ function App() {
         Reset
       </button>
       <button className="randomize" onClick={randomize}>
-        Reset
+        Randomize
       </button>
     </StyledContainer>
   );

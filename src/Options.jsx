@@ -90,7 +90,6 @@ const Options = ({ options, setOptions, start }) => {
   return (
     <div>
       <Accordion accordionList={optionMenu} />
-      {/* <StyledHideButton onClick={toggleHideOptions}>Options</StyledHideButton> */}
     </div>
   );
 };
