@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Accordion from "./Accordion";
 import styled from "styled-components";
 
