@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import GlobalStyle from "./global";
 import Board from "./Board";
 import Options from "./Options";
@@ -45,9 +45,10 @@ function App() {
   });
   const [gameRunning, setGameRunning] = useState(false);
 
-  const init = () => {
+  const init = useCallback(() => {
     setBoard(new Array(options.x * options.y).fill(false));
-  };
+    setGameRunning(false);
+  }, [options, setGameRunning]);
 
   const start = () => {
     setGameRunning(true);
@@ -119,13 +120,13 @@ function App() {
           }
         }
 
-        if (idx === 6) {
-          console.log("idx");
-        }
+        // if (idx === 6) {
+        //   console.log("idx");
+        // }
 
-        if (idx === 6) {
-          console.log(`Cell ${idx} has ${neighbors} neighbors`);
-        }
+        // if (idx === 6) {
+        //   console.log(`Cell ${idx} has ${neighbors} neighbors`);
+        // }
 
         // if neighbors are too low set cell to false
         if (neighbors < 2) return false;
@@ -152,7 +153,7 @@ function App() {
 
   useEffect(() => {
     init();
-  }, [options]);
+  }, [options, init]);
 
   return (
     <StyledContainer>
