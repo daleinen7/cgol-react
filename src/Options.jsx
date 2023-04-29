@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Accordion from "./Accordion";
 import styled from "styled-components";
 
 const StyledOptions = styled.form`
@@ -16,21 +17,7 @@ const StyledOptions = styled.form`
   }
 `;
 
-const StyledHideButton = styled.button`
-  width: 11rem;
-  border: none;
-  background: none;
-  align-self: flex-start;
-  color: white;
-  text-decoration: underline;
-  :hover {
-    font-style: italic;
-  }
-`;
-
 const Options = ({ options, setOptions, start }) => {
-  const [hideOptions, setHideOptions] = useState(true);
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
     start();
@@ -40,14 +27,10 @@ const Options = ({ options, setOptions, start }) => {
     setOptions({ ...options, [e.target.name]: e.target.value });
   };
 
-  const toggleHideOptions = () => {
-    setHideOptions(!hideOptions);
-  };
-
-  return (
-    <div>
-      <StyledHideButton onClick={toggleHideOptions}>Options</StyledHideButton>
-      {!hideOptions && (
+  const optionMenu = [
+    {
+      title: "Options",
+      content: (
         <StyledOptions onSubmit={handleFormSubmit}>
           <label htmlFor="x">
             X:
@@ -100,7 +83,14 @@ const Options = ({ options, setOptions, start }) => {
             />
           </label>
         </StyledOptions>
-      )}
+      ),
+    },
+  ];
+
+  return (
+    <div>
+      <Accordion accordionList={optionMenu} />
+      {/* <StyledHideButton onClick={toggleHideOptions}>Options</StyledHideButton> */}
     </div>
   );
 };

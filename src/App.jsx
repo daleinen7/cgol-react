@@ -7,7 +7,7 @@ import styled from "styled-components";
 const StyledContainer = styled.div`
   min-height: 100vh;
   color: white;
-  background: #010a01;
+  background: var(--black);
   font-family: "Quicksand", sans-serif;
   width: 100%;
   display: flex;
@@ -17,6 +17,7 @@ const StyledContainer = styled.div`
     margin-top: 0;
     padding: 4rem;
     text-align: center;
+    font-size: 2.5rem;
   }
 
   button {

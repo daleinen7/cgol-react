@@ -2,8 +2,9 @@ import styled from "styled-components";
 import Cell from "./Cell";
 
 const StyledBoard = styled.div`
-  background: #575761;
-  border: 2px solid ${(props) => (props.gameRunning ? "#37B3C6" : "#EB4027")};
+  background: var(--gray);
+  border: 2px solid
+    ${(props) => (props.gameRunning ? "var(--blue)" : "var(--red)")};
   padding: 1rem;
   margin: 1rem;
   width: ${(props) => props.x * props.size + props.x * props.gap}px;
