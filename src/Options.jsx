@@ -18,6 +18,10 @@ const StyledOptions = styled.form`
     input {
       width: 3rem;
     }
+
+    dd {
+      background-color: gray;
+    }
   }
 `;
 
