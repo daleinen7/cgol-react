@@ -13,7 +13,6 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   h1 {
     margin-top: 0;
@@ -27,6 +26,7 @@ const StyledContainer = styled.div`
     border: none;
     font-family: "Quicksand";
     font-size: 1.25rem;
+    color: var(--black);
   }
 
   .start {
@@ -38,14 +38,29 @@ const StyledContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin: 1rem;
   }
 
+  .save {
+    width: 16rem;
+    background-color: var(--blue);
+  }
   .load {
     background-color: var(--blue);
+    width: 10rem;
   }
 
   .delete {
     background-color: var(--red);
+  }
+  .reset {
+    background-color: var(--yellow);
+    margin: 1rem;
+  }
+
+  .randomize {
+    background-color: var(--yellow);
+    margin-bottom: 10rem;
   }
 `;
 

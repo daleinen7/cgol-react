@@ -56,6 +56,7 @@ table {
 	--blue: #37B3C6;
 	--red: #EB4027;
 	--gray: #575761;
+	--yellow: #ebc634;
 }
 `;
 
