@@ -22,9 +22,8 @@ const StyledAccordion = styled.dl`
   .list-group {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
     border-top: 1px solid black;
-    padding: 1.5rem 0 3.5rem 0;
+    padding: 1.5rem 0 0 0;
   }
 
   img {

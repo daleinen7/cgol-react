@@ -7,12 +7,17 @@ const StyledOptions = styled.form`
   margin: 1rem;
   display: flex;
   flex-direction: column;
+  min-width: 20rem;
 
   label {
     display: flex;
     justify-content: space-between;
-    width: 30%;
-    margin: 0.375rem;
+    width: 100%;
+    padding: 0.25rem;
+
+    input {
+      width: 3rem;
+    }
   }
 `;
 
@@ -32,7 +37,7 @@ const Options = ({ options, setOptions, start }) => {
       content: (
         <StyledOptions onSubmit={handleFormSubmit}>
           <label htmlFor="x">
-            X:
+            <span>X:</span>
             <input
               type="number"
               name="x"
@@ -42,7 +47,7 @@ const Options = ({ options, setOptions, start }) => {
             />
           </label>
           <label htmlFor="y">
-            Y:
+            <span>Y:</span>
             <input
               type="number"
               name="y"
@@ -52,7 +57,7 @@ const Options = ({ options, setOptions, start }) => {
             />
           </label>
           <label htmlFor="speed">
-            Speed:
+            <span>Speed:</span>
             <input
               type="number"
               name="speed"
@@ -62,7 +67,7 @@ const Options = ({ options, setOptions, start }) => {
             />
           </label>
           <label htmlFor="size">
-            Size:
+            <span>Size:</span>
             <input
               type="number"
               name="size"
@@ -72,7 +77,7 @@ const Options = ({ options, setOptions, start }) => {
             />
           </label>
           <label htmlFor="gap">
-            Gap:
+            <span>Gap:</span>
             <input
               type="number"
               name="gap"

@@ -12,6 +12,8 @@ const StyledContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   h1 {
     margin-top: 0;
@@ -22,6 +24,28 @@ const StyledContainer = styled.div`
 
   button {
     padding: 1.25rem 1.75rem;
+    border: none;
+    font-family: "Quicksand";
+    font-size: 1.25rem;
+  }
+
+  .start {
+    background-color: var(--green);
+    width: 20rem;
+  }
+
+  .saved-board-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .load {
+    background-color: var(--blue);
+  }
+
+  .delete {
+    background-color: var(--red);
   }
 `;
 
@@ -76,9 +100,7 @@ function App() {
 
   const saveBoard = () => {
     let savedBoards = JSON.parse(localStorage.getItem("savedBoards"));
-    console.log(savedBoards);
     const currentBoard = { options, board };
-    console.log(currentBoard);
     if (savedBoards) {
       localStorage.setItem(
         "savedBoards",
@@ -90,15 +112,10 @@ function App() {
     showSavedBoards();
   };
 
-  const loadBoard = (idx) => {
+  const loadBoard = async (idx) => {
+    await setOptions(savedBoardList[idx].options);
     setBoard(savedBoardList[idx].board);
-    setOptions(savedBoardList[idx].options);
   };
-
-  useEffect(() => {
-    // This effect will trigger a re-render after both state updates have been applied
-    // You can put any additional logic here that should run after the state updates have been applied
-  }, [board, options]);
 
   const deleteBoard = (idx) => {
     let currentBoards = [...savedBoardList];
@@ -110,6 +127,7 @@ function App() {
   const showSavedBoards = () => {
     setSavedBoardList(JSON.parse(localStorage.getItem("savedBoards")));
   };
+
   // Render
   useEffect(() => {
     const render = () => {
@@ -224,15 +242,22 @@ function App() {
         gameRunning={gameRunning}
       />
       <button onClick={saveBoard}>Save</button>
-      {savedBoardList &&
-        savedBoardList.map((board, idx) => {
-          return (
-            <div className="saved-board" key={idx}>
-              <button onClick={() => loadBoard(idx)}>{idx}</button>
-              <button onClick={() => deleteBoard(idx)}>X</button>
-            </div>
-          );
-        })}
+      {savedBoardList && (
+        <ul className="saved-board-list">
+          {savedBoardList.map((board, idx) => {
+            return (
+              <li className="saved-board" key={idx}>
+                <button className={"load"} onClick={() => loadBoard(idx)}>
+                  Load {idx}
+                </button>
+                <button className={"delete"} onClick={() => deleteBoard(idx)}>
+                  X
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
       <button className="reset" onClick={init}>
         Reset
       </button>
