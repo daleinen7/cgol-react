@@ -44,6 +44,9 @@ function App() {
     size: 16,
     gap: 2,
   });
+  const [savedBoardList, setSavedBoardList] = useState(
+    JSON.parse(localStorage.getItem("savedBoards"))
+  );
   const [gameRunning, setGameRunning] = useState(false);
 
   const init = useCallback(() => {
@@ -71,6 +74,42 @@ function App() {
     );
   };
 
+  const saveBoard = () => {
+    let savedBoards = JSON.parse(localStorage.getItem("savedBoards"));
+    console.log(savedBoards);
+    const currentBoard = { options, board };
+    console.log(currentBoard);
+    if (savedBoards) {
+      localStorage.setItem(
+        "savedBoards",
+        JSON.stringify([...savedBoards, currentBoard])
+      );
+    } else {
+      localStorage.setItem("savedBoards", JSON.stringify([currentBoard]));
+    }
+    showSavedBoards();
+  };
+
+  const loadBoard = (idx) => {
+    setBoard(savedBoardList[idx].board);
+    setOptions(savedBoardList[idx].options);
+  };
+
+  useEffect(() => {
+    // This effect will trigger a re-render after both state updates have been applied
+    // You can put any additional logic here that should run after the state updates have been applied
+  }, [board, options]);
+
+  const deleteBoard = (idx) => {
+    let currentBoards = [...savedBoardList];
+    currentBoards.splice(idx, 1);
+    localStorage.setItem("savedBoards", JSON.stringify(currentBoards));
+    showSavedBoards();
+  };
+
+  const showSavedBoards = () => {
+    setSavedBoardList(JSON.parse(localStorage.getItem("savedBoards")));
+  };
   // Render
   useEffect(() => {
     const render = () => {
@@ -164,6 +203,10 @@ function App() {
     init();
   }, [options, init]);
 
+  useEffect(() => {
+    showSavedBoards();
+  }, []);
+
   return (
     <StyledContainer>
       <GlobalStyle />
@@ -180,6 +223,16 @@ function App() {
         options={options}
         gameRunning={gameRunning}
       />
+      <button onClick={saveBoard}>Save</button>
+      {savedBoardList &&
+        savedBoardList.map((board, idx) => {
+          return (
+            <div className="saved-board" key={idx}>
+              <button onClick={() => loadBoard(idx)}>{idx}</button>
+              <button onClick={() => deleteBoard(idx)}>X</button>
+            </div>
+          );
+        })}
       <button className="reset" onClick={init}>
         Reset
       </button>
