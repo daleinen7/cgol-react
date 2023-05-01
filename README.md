@@ -25,4 +25,4 @@ You may also see any lint errors in the console.
 - ChatGPT was used for various prompts as a sounding board or quick solution in lieu of Google
   - Filling a new empty array with booleans and later, random booleans
   - Brainstorming solutions to manage state; specifically the loading of option and grid state from local storage, though ultimately I used my own solution
-  - Curiosity had me trying to find a more concise solution to the render function that checks neighbors but I've kept my original solution.
+  - Exploring a more concise solution to the render function that checks neighbors but I've kept my original solution.
