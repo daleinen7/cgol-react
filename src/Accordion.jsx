@@ -34,6 +34,7 @@ const StyledAccordion = styled.dl`
     overflow: hidden;
     max-height: 50rem;
     transition: max-height 1.5s ease-in-out;
+    background-color: gray;
   }
 
   dd[aria-expanded="true"] {
